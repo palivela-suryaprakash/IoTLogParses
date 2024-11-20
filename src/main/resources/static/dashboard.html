@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>IoT Log Dashboard</title>
+</head>
+<body>
+    <h1>IoT Log Data</h1>
+    <form method="post" enctype="multipart/form-data" th:action="@{/api/logs/upload}">
+        <input type="file" name="file" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    <table >
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Device ID</th>
+                <th>Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="log : ${logs}">
+                <td th:text="${log.timestamp}"></td>
+                <td th:text="${log.deviceId}"></td>
+                <td th:text="${log.data}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
